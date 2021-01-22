@@ -1,5 +1,9 @@
 #
+# Author: Yuu Takanashi
+# License: MIT
 #
+# How to use: Look the README.md
+# Support: Python 3.6 for Windows10
 #
 
 debug = False
