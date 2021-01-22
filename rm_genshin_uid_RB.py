@@ -14,6 +14,11 @@ import datetime
 datetime_init=datetime.datetime.today()
 print(str(datetime_init.strftime("%Y/%m/%d %H:%M:%S")))
 
+# 設定値
+dst_prefix = '_'
+dst_postfix = '_' + str(datetime_init.strftime("%Y%m%dT%H%M%S"))
+dst_postfix = '_' + str(int(datetime_init.timestamp()))
+
 # 引数チェック・引数があるか
 # https://qiita.com/orange_u/items/3f0fb6044fd5ee2c3a37
 import time
@@ -54,7 +59,7 @@ for i, item in enumerate(args):
 		time.sleep(2)
 		exit(2)
 	
-	dst = os.path.splitext(item)[0] + '_' + str(datetime_init.strftime("%Y%m%dT%H%M%S")) + os.path.splitext(item)[1]
+	dst = os.path.dirname(os.path.splitext(item)[0]) + '\\' + str(dst_prefix) + os.path.basename(os.path.splitext(item)[0]) + str(dst_postfix) + os.path.splitext(item)[1]
 	print('Dst' + ( '[' + str(i) + ']' ) + ': ' + dst)
 	
 	src = cv2.imread(src)
