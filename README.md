@@ -6,6 +6,6 @@
 - License is [MIT](MIT_LICENSE)
 
 # How To Use
-- D&D(Drug and Drop) in .py file by image file(s)
+- DnD(Drug and Drop) the image file(s) into a .py file.
 
 [MIT_LICENSE]:https://ja.wikipedia.org/wiki/MIT_License
