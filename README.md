@@ -1,6 +1,6 @@
 # About
 
-- Description is 原神スクショデータからUIDを隠すツール
+- Description is 蜴溽･槭せ繧ｯ繧ｷ繝ｧ繝�繝ｼ繧ｿ縺九ｉUID繧帝國縺吶ヤ繝ｼ繝ｫ
 - Created by Yuu Takanashi
 - Updated at 23rd Jan 2021
 - License is [MIT](MIT_LICENSE)
@@ -8,4 +8,4 @@
 # How To Use
 - D&D(Drug and Drop) in .py file by image file(s)
 
-[MIT_LICENSE]https://ja.wikipedia.org/wiki/MIT_License
+[MIT_LICENSE]:https://ja.wikipedia.org/wiki/MIT_License
