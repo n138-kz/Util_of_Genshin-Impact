@@ -19,6 +19,12 @@ Genshin Impact is miHoYo's first ever open-world game,
 - Created by Yuu Takanashi
 - Updated at 23rd Jan 2021
 - License is [MIT][MIT_LICENSE]
+- Supported env is below.
+
+| Item | Value |
+| ---- | ----- |
+| OS | Win10x64(1909) |
+| Img size | 1920x1080 |
 
 ## How To Use
 - DnD(Drug and Drop) the image file(s) into a .py file.
