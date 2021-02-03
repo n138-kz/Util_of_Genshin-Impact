@@ -8,7 +8,7 @@ Genshin Impact is miHoYo's first ever open-world game,
 
 ## Util(s) list
 - [rm_genshin_uid.py][RightBottomTrimScr]
-
+- [sv_ss_fromCB.py][ClipBoard2File]
 
 ---
 
@@ -35,4 +35,5 @@ Genshin Impact is miHoYo's first ever open-world game,
 
 [MIT_LICENSE]:https://ja.wikipedia.org/wiki/MIT_License
 [RightBottomTrimScr]:/rm_genshin_uid_RB.py
+[ClipBoard2File]:/sv_ss_fromCB.py
 [Genshin_Impact_Root]:https://genshin.mihoyo.com/
