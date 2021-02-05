@@ -1,6 +1,11 @@
-# pip install requests
 # https://python.civic-apps.com/http-request-post-get/
-import requests
+try:
+	import requests
+except ModuleNotFoundError:
+	print('ModuleNotFoundError: Please run the below.')
+	print('pip install requests')
+	exit()
+
 response = requests.get('https://labs.n138.jp/GetRandStr/api/?chr=11&len=16')
 if int(response.status_code) != 200:
 	print('Error! HTTP status is ' + str(response.status_code))
@@ -20,7 +25,12 @@ print(response)
 
 # pip install pillow
 # https://code.tiblab.net/python/pil/clipboard_get_image
-from PIL import ImageGrab, Image
+try:
+	from PIL import ImageGrab, Image
+except ModuleNotFoundError:
+	print('ModuleNotFoundError: Please run the below.')
+	print('pip install pillow')
+	exit()
 
 im = ImageGrab.grabclipboard()
 if isinstance(im, Image.Image):
