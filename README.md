@@ -53,6 +53,25 @@ Genshin Impact is miHoYo's first ever open-world game,
 ## How To Use
 - .py file.
 
+---
+# Util_of_Genshin-Impact.py
+## About
+
+- Description is 下記ツールをマージしたもの
+- - [rm_genshin_uid.py][RightBottomTrimScr]
+- - [sv_ss_fromCB.py][ClipBoard2File]
+
+- Created by Yuu 
+- Updated at **/**/**
+- License is [MIT][MIT_LICENSE]
+- Supported env is below.
+
+| Item | Value |
+| ---- | ----- |
+| OS | Win10x64(1909) |
+| Img size | 1920x1080 |
+
+
 [MIT_LICENSE]:https://ja.wikipedia.org/wiki/MIT_License
 [RightBottomTrimScr]:/rm_genshin_uid_RB.py
 [ClipBoard2File]:/sv_ss_fromCB.py
