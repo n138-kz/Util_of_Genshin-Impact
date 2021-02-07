@@ -58,16 +58,16 @@ currenttime = currenttime.replace(':','-').replace(' ','-')
 currenttime = currenttime[:currenttime.find('.')]
 currenttime = currenttime[2:]
 
-currentdir = os.getcwd()
-if currentdir[-1:] != '\\' and currentdir[-1:] != '/':
-	currentdir += '/'
+saveToDir = os.getcwd()
+if saveToDir[-1:] != '\\' and saveToDir[-1:] != '/':
+	saveToDir += '/'
 
 if str(platform.system()).lower() == 'windows':
-	currentdir = currentdir.replace('/', '\\')
+	saveToDir = saveToDir.replace('/', '\\')
 
-imagefname = ( currentdir ) + ( 'ss' + '_' + currenttime + '.jpg' )
+imagefname = ( saveToDir ) + ( 'ss' + '_' + currenttime + '.jpg' )
 
-print('Dst' + ( '[' + '0' + ']' ) + ': ' + currentdir)
+print('Dst' + ( '[' + '0' + ']' ) + ': ' + saveToDir)
 
 # 引数チェック・引数があるか
 # https://qiita.com/orange_u/items/3f0fb6044fd5ee2c3a37
