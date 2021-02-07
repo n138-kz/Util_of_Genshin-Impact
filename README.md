@@ -9,6 +9,7 @@ Genshin Impact is miHoYo's first ever open-world game,
 ## Util(s) list
 - [rm_genshin_uid.py][RightBottomTrimScr]
 - [sv_ss_fromCB.py][ClipBoard2File]
+- Util_of_Genshin-Impact.py
 
 ---
 
@@ -16,7 +17,7 @@ Genshin Impact is miHoYo's first ever open-world game,
 ## About
 
 - Description is 原神スクショデータからUIDを隠すツール
-- Created by Yuu Takanashi
+- Created by Yuu 
 - Updated at 23rd Jan 2021
 - License is [MIT][MIT_LICENSE]
 - Supported env is below.
@@ -32,6 +33,44 @@ Genshin Impact is miHoYo's first ever open-world game,
 ## Revision history
 - 1.0 : Released the [rm_genshin_uid.py][RightBottomTrimScr]
 - - [rm_genshin_uid.py][RightBottomTrimScr] is 右下のUIDのみモザイク処理する script.
+
+---
+
+# sv_ss_fromCB.py
+## About
+
+- Description is クリップボードから画像データを読み込みファイルに保存するツール
+- Created by Yuu 
+- Updated at **/**/**
+- License is [MIT][MIT_LICENSE]
+- Supported env is below.
+
+| Item | Value |
+| ---- | ----- |
+| OS | Win10x64(1909) |
+| Img size | 1920x1080 |
+
+## How To Use
+- .py file.
+
+---
+# Util_of_Genshin-Impact.py
+## About
+
+- Description is 下記ツールをマージしたもの
+- - [rm_genshin_uid.py][RightBottomTrimScr]
+- - [sv_ss_fromCB.py][ClipBoard2File]
+
+- Created by Yuu 
+- Updated at **/**/**
+- License is [MIT][MIT_LICENSE]
+- Supported env is below.
+
+| Item | Value |
+| ---- | ----- |
+| OS | Win10x64(1909) |
+| Img size | 1920x1080 |
+
 
 [MIT_LICENSE]:https://ja.wikipedia.org/wiki/MIT_License
 [RightBottomTrimScr]:/rm_genshin_uid_RB.py
