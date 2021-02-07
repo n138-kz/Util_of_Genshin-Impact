@@ -51,21 +51,38 @@ def mosaic_area(src, x, y, width, height, ratio=0.1):
 	dst[y:y + height, x:x + width] = mosaic(dst[y:y + height, x:x + width], ratio)
 	return dst
 
+def getTimeString():
+	now = str(datetime.datetime.today())
+	now = now.replace(':','-').replace(' ','-')
+	now = now[:now.find('.')+4]
+	now = now.replace('.','-')
+	now = now[2:]
+	return now
+
+def getFilenameString():
+	return ( saveToDir ) + ( 'ss' + '_' + getTimeString() + '.jpg' )
 
 
-currenttime = str(datetime.datetime.today())
-currenttime = currenttime.replace(':','-').replace(' ','-')
-currenttime = currenttime[:currenttime.find('.')]
-currenttime = currenttime[2:]
-
+# 保存先フォルダ
 saveToDir = os.getcwd()
+
+# 保存先フォルダ：引数チェック・引数があるか
+# https://qiita.com/orange_u/items/3f0fb6044fd5ee2c3a37
+args = sys.argv
+print(args)
+try:
+	if os.path.isdir(args[1]):
+		saveToDir = args[1]
+		del args[1]
+	
+except IndexError:
+	pass
+
 if saveToDir[-1:] != '\\' and saveToDir[-1:] != '/':
 	saveToDir += '/'
 
 if str(platform.system()).lower() == 'windows':
 	saveToDir = saveToDir.replace('/', '\\')
-
-imagefname = ( saveToDir ) + ( 'ss' + '_' + currenttime + '.jpg' )
 
 print('Dst' + ( '[' + '0' + ']' ) + ': ' + saveToDir)
 
@@ -77,6 +94,9 @@ if ( len(args) - 1 ) < 1:
 	im = ImageGrab.grabclipboard()
 
 	if isinstance(im, Image.Image):
+		# 保存先ファイル名
+		imagefname = getFilenameString()
+
 		# 処理しやすいように一旦保存
 		im.save(imagefname)
 
@@ -90,27 +110,42 @@ if ( len(args) - 1 ) < 1:
 		args.append(imagefname)
 
 	else:
-		print('no image in clipboard')
+		print('Error: No image in clipboard')
+		time.sleep(3)
+		exit(4)
+
+if (len(args)-1) < 1:
+	print('Error: Unable the open directory.')
+	time.sleep(3)
+	exit(2)
+
 
 # 引数のファイルすべてロード
 for i, item in enumerate(args):
 	if i == 0: continue
+	if os.path.isdir(item):
+		print('Src' + ( '[' + str(i) + ']' ) + ': ')
+
 
 	src = item
 	print('Src' + ( '[' + str(i) + ']' ) + ': ' + src)
 
 	if not os.path.isfile(item):
 		print('Error: No such a file or directory: ' + item)
+		if os.path.isdir(item) and i==1: continue
 		time.sleep(3)
-		exit(2)
+		exit(4)
 
+	imagefname = getFilenameString()
 	print('Dst' + ( '[' + str(i) + ']' ) + ': ' + imagefname)
+	# ファイルパスをコピー
+	pyperclip.copy('"' + imagefname + '"')
 
 	src = cv2.imread(src)
 	if src is None:
 		print('Error: Unable to load file: ' + item)
 		time.sleep(3)
-		exit(2)
+		exit(8)
 
 	h, w, _ = src.shape
 
