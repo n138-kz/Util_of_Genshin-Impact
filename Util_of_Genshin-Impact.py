@@ -78,6 +78,23 @@ def getTimeString():
 def getFilenameString(saveToDir = os.getcwd()):
 	return ( saveToDir ) + ( 'ss' + '_' + getTimeString() + '.png' )
 
+def copy_img_to_clip_board(img_ndarray):
+	"""
+	ndarray型の画像を引数にとって、クリップボードにコピーする関数
+	https://jangle.tokyo/2020/07/07/post-2241/
+	https://water2litter.net/rum/post/python_win32clipboard_set/
+	"""
+	output = io.BytesIO()
+	# img_ndarray = cv2.cvtColor(img_ndarray, cv2.COLOR_BGR2RGB)
+	img_pil = Image.fromarray(np.uint8(img_ndarray))  # <class 'PIL.Image.Image'>に変換
+	img_pil.save(output, 'BMP')
+	img_bmp = output.getvalue()[14:]
+	output.close()
+	win32clipboard.OpenClipboard()
+	win32clipboard.EmptyClipboard()
+	win32clipboard.SetClipboardData(win32clipboard.CF_DIB, img_ndarray)
+	win32clipboard.CloseClipboard()
+
 
 # 保存先フォルダ
 saveToDir = os.getcwd()
@@ -154,6 +171,7 @@ for i, item in enumerate(args):
 
 	imagefname = getFilenameString(saveToDir)
 	print('Dst' + ( '[' + str(i) + ']' ) + ': ' + imagefname)
+
 	# ファイルパスをコピー
 	pyperclip.copy('"' + imagefname + '"')
 
@@ -167,22 +185,32 @@ for i, item in enumerate(args):
 
 	if True:
 		print('Original')
-		print('   width:  ' + str(w) + 'px')
-		print('   height: ' + str(h) + 'px')
+		print('\twidth:  ' + str(w) + 'px')
+		print('\theight: ' + str(h) + 'px')
 
 	if w != 1920 or h != 1080 :
 		print('Not support size')
-	else:
-		# 大きさ
-		xe = 250
-		ye = 30
+		continue
 
-		# 始点
-		xs = w-xe
-		ys = h-ye
+	# 大きさ
+	xe = 250
+	ye = 30
 
-		cv2.imwrite(imagefname, mosaic_area(src, xs, ys, xe, ye, ratio=0.2))
+	# 始点
+	xs = w-xe
+	ys = h-ye
+
+	imagebdata = mosaic_area(src, xs, ys, xe, ye, ratio=0.2)
+	cv2.imwrite(imagefname, imagebdata)
 
 	print('')
+	try:
+		print(type(imagebdata))
+		copy_img_to_clip_board(imagebdata)
+
+	except:
+		import traceback
+		traceback.print_exc()
+		sys.exit(1)
 
 time.sleep(1)
