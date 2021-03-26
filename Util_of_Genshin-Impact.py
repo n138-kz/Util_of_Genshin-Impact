@@ -27,20 +27,36 @@ import datetime
 import os
 import platform
 import sys
+import io
+import numpy as np
+
+
 try:
 	import cv2
 except ModuleNotFoundError:
 	err_ModuleNotFoundError('opencv-python')
+
 try:
 	# クリップボード読み取り
 	# https://code.tiblab.net/python/pil/clipboard_get_image
 	from PIL import ImageGrab, Image
 except ModuleNotFoundError:
 	err_ModuleNotFoundError('pillow')
+
 try:
 	import pyperclip
 except ModuleNotFoundError:
 	err_ModuleNotFoundError('pyperclip')
+
+try:
+	import win32clipboard
+except ModuleNotFoundError:
+	err_ModuleNotFoundError('pywin32')
+
+
+
+
+
 
 def mosaic(src, ratio=0.1):
 	small = cv2.resize(src, None, fx=ratio, fy=ratio, interpolation=cv2.INTER_NEAREST)
