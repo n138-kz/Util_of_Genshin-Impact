@@ -5,11 +5,13 @@ currenttime = currenttime[:currenttime.find('.')]
 currenttime = currenttime[2:]
 
 import os
-imagefname = os.getcwd() + '/' + 'screenshot_' + currenttime + '.jpg'
+imagefname = 'C:\\Users\\yneon\\Downloads\\' + 'screenshot_' + currenttime + '.jpg'
 
 import platform
 if str(platform.system()).lower() == 'windows':
 	imagefname = imagefname.replace('/', '\\')
+
+print(imagefname)
 
 # https://code.tiblab.net/python/pil/clipboard_get_image
 try:

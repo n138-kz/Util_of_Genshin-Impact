@@ -59,8 +59,8 @@ def getTimeString():
 	now = now[2:]
 	return now
 
-def getFilenameString():
-	return ( saveToDir ) + ( 'ss' + '_' + getTimeString() + '.jpg' )
+def getFilenameString(saveToDir = os.getcwd()):
+	return ( saveToDir ) + ( 'ss' + '_' + getTimeString() + '.png' )
 
 
 # 保存先フォルダ
@@ -69,7 +69,7 @@ saveToDir = os.getcwd()
 # 保存先フォルダ：引数チェック・引数があるか
 # https://qiita.com/orange_u/items/3f0fb6044fd5ee2c3a37
 args = sys.argv
-print(args)
+#print(args)
 try:
 	if os.path.isdir(args[1]):
 		saveToDir = args[1]
@@ -95,10 +95,10 @@ if ( len(args) - 1 ) < 1:
 
 	if isinstance(im, Image.Image):
 		# 保存先ファイル名
-		imagefname = getFilenameString()
+		imagefname = getFilenameString(saveToDir)
 
 		# 処理しやすいように一旦保存
-		im.save(imagefname)
+		im.save(imagefname, "PNG")
 
 		# ファイルパスを表示
 		print('saved: ' + imagefname)
@@ -136,7 +136,7 @@ for i, item in enumerate(args):
 		time.sleep(3)
 		exit(4)
 
-	imagefname = getFilenameString()
+	imagefname = getFilenameString(saveToDir)
 	print('Dst' + ( '[' + str(i) + ']' ) + ': ' + imagefname)
 	# ファイルパスをコピー
 	pyperclip.copy('"' + imagefname + '"')
@@ -156,16 +156,17 @@ for i, item in enumerate(args):
 
 	if w != 1920 or h != 1080 :
 		print('Not support size')
+	else:
+		# 大きさ
+		xe = 250
+		ye = 30
 
-	# 大きさ
-	xe = 250
-	ye = 30
+		# 始点
+		xs = w-xe
+		ys = h-ye
 
-	# 始点
-	xs = w-xe
-	ys = h-ye
+		cv2.imwrite(imagefname, mosaic_area(src, xs, ys, xe, ye, ratio=0.2))
 
-	cv2.imwrite(imagefname, mosaic_area(src, xs, ys, xe, ye, ratio=0.2))
 	print('')
 
 time.sleep(1)
