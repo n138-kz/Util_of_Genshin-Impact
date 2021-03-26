@@ -18,7 +18,7 @@
 
 def err_ModuleNotFoundError(module_name):
 	print('ModuleNotFoundError: Please run the below.')
-	print('pip install pillow' + module_name)
+	print('pip install ' + module_name)
 	time.sleep(3)
 	exit(1)
 
