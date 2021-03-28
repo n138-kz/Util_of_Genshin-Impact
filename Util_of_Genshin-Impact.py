@@ -188,7 +188,7 @@ for i, item in enumerate(args):
 		print('\twidth:  ' + str(w) + 'px')
 		print('\theight: ' + str(h) + 'px')
 
-	if w != 1920 or h != 1080 :
+	if not((w == 1920 and h == 1080) or (w == 1280 and h == 720)) :
 		print('Not support size')
 		continue
 
