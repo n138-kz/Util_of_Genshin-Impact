@@ -8,6 +8,12 @@
 
 debug = False
 
+def err_ModuleNotFoundError(module_name):
+	print('ModuleNotFoundError: Please run the below.')
+	print('pip install ' + module_name)
+	time.sleep(3)
+	exit(1)
+
 # 起動情報
 # https://qiita.com/motoki1990/items/8275dbe02d5fd5fa6d2d#%E7%8F%BE%E5%9C%A8%E3%81%AE%E6%97%A5%E4%BB%98
 import datetime
@@ -15,7 +21,7 @@ datetime_init=datetime.datetime.today()
 print(str(datetime_init.strftime("%Y/%m/%d %H:%M:%S")))
 
 # 設定値
-dst_prefix = '_'
+dst_prefix = ''
 dst_postfix = '_' + str(datetime_init.strftime("%Y%m%dT%H%M%S"))
 dst_postfix = '_' + str(int(datetime_init.timestamp()))
 
@@ -37,7 +43,11 @@ if args_len < 1:
 # https://note.nkmk.me/python-opencv-mosaic/
 # https://note.nkmk.me/python-opencv-pillow-image-size/
 import os
-import cv2
+try:
+	import cv2
+except ModuleNotFoundError:
+	err_ModuleNotFoundError('opencv-python')
+
 
 def mosaic(src, ratio=0.1):
 	small = cv2.resize(src, None, fx=ratio, fy=ratio, interpolation=cv2.INTER_NEAREST)
@@ -60,6 +70,8 @@ for i, item in enumerate(args):
 		exit(2)
 	
 	dst = os.path.dirname(os.path.splitext(item)[0]) + '\\' + str(dst_prefix) + os.path.basename(os.path.splitext(item)[0]) + str(dst_postfix) + os.path.splitext(item)[1]
+	if dst[0:1] == '\\':
+		dst = dst[1:]
 	print('Dst' + ( '[' + str(i) + ']' ) + ': ' + dst)
 	
 	src = cv2.imread(src)
